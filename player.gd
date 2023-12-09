@@ -1,35 +1,40 @@
-extends Area2D
+extends CharacterBody2D
 
-@export var speed = 400 # How fast the player will move (pixels/sec).
+
+var max_speed = 400
+var acceleration = 1000
+var friction = 600
 var screen_size # Size of the game window.
+var input = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	look_at(get_global_mouse_position())
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+func get_movement_input():
+	input.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+	input.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
+	return input.normalized()
 	
-	if Input.is_action_pressed("dash"):
-		velocity.y = velocity.y*30
-		velocity.x = velocity.x*30
-		
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
+	
+func player_movement(delta):
+	input = get_movement_input()
+	if input == Vector2.ZERO:
+		if velocity.length() > (friction*delta):
+			velocity-=velocity.normalized() * (friction*delta)
+		else:
+			velocity = Vector2.ZERO
 	else:
-		$AnimatedSprite2D.stop()
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+		velocity += (input * acceleration * delta)
+		velocity = velocity.limit_length(max_speed)
+	move_and_slide()
+	return
+
+
+func _physics_process(delta):
+	look_at(get_global_mouse_position())
+	player_movement(delta)
+
+
+
