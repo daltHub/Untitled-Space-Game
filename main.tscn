@@ -126,5 +126,17 @@ position = Vector2(1315, 771)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="test_object" parent="." instance=ExtResource("3_yr2b4")]
-position = Vector2(585.291, 406.927)
-scale = Vector2(1.05286, 0.955272)
+position = Vector2(2484, 782)
+scale = Vector2(1.05286, 16.4353)
+
+[node name="test_object2" parent="." instance=ExtResource("3_yr2b4")]
+position = Vector2(1176, 1797)
+scale = Vector2(20.7729, 0.955272)
+
+[node name="test_object3" parent="." instance=ExtResource("3_yr2b4")]
+position = Vector2(1227, -82)
+scale = Vector2(-22.8549, -0.298247)
+
+[node name="test_object4" parent="." instance=ExtResource("3_yr2b4")]
+position = Vector2(-77, 761)
+scale = Vector2(0.680655, 18.3896)
