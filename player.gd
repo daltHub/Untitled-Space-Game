@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var max_speed = 400
+var max_speed = 800
 var acceleration = 1000
 var friction = 600
 var screen_size # Size of the game window.
