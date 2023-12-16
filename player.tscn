@@ -15,6 +15,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 128
 script = ExtResource("1_shv4u")
 metadata/_edit_group_ = true
 
@@ -25,3 +26,6 @@ sprite_frames = SubResource("SpriteFrames_jrsko")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(-3, -31, 3, -31, 7, -24, 13, -19, 19, -12, 23, 10, 24, 14, 29, 18, 27, 21, 20, 22, 4, 19, -3, 19, -9, 20, -20, 21, -27, 21, -22, 4, -16, -13)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(37, 0)

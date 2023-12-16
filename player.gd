@@ -6,8 +6,8 @@ var acceleration = 1800
 var friction = 600
 var screen_size # Size of the game window.
 var input = Vector2.ZERO
-
-# Called when the node enters the scene tree for the first time.
+var bullet_speed = 2000
+var Bullet = preload("res://bullet.tscn")
 func _ready():
 	screen_size = get_viewport_rect().size
 
@@ -31,10 +31,19 @@ func player_movement(delta):
 	move_and_slide()
 	return
 
+func shoot():
+	var b = Bullet.instantiate()
+	owner.add_child(b)
+	b.transform = $Muzzle.global_transform
+
+
 
 func _physics_process(delta):
-	look_at(get_global_mouse_position())
+	var mouse_pos = get_global_mouse_position()
+	look_at(mouse_pos)
 	player_movement(delta)
+	if Input.is_action_pressed("shoot"):
+		shoot()
 
 
 

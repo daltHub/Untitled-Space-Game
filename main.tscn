@@ -124,19 +124,27 @@ layer_0/tile_data = PackedInt32Array(1, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609,
 position = Vector2(1315, 771)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 2400
+limit_bottom = 2000
 
 [node name="test_object" parent="." instance=ExtResource("3_yr2b4")]
 position = Vector2(2484, 782)
-scale = Vector2(1.05286, 16.4353)
+scale = Vector2(1.05286, 16.2777)
+collision_mask = 3
 
 [node name="test_object2" parent="." instance=ExtResource("3_yr2b4")]
 position = Vector2(1176, 1797)
 scale = Vector2(20.7729, 0.955272)
+collision_mask = 3
 
 [node name="test_object3" parent="." instance=ExtResource("3_yr2b4")]
 position = Vector2(1227, -82)
 scale = Vector2(-22.8549, -0.298247)
+collision_mask = 3
 
 [node name="test_object4" parent="." instance=ExtResource("3_yr2b4")]
 position = Vector2(-77, 761)
 scale = Vector2(0.680655, 18.3896)
+collision_mask = 3
