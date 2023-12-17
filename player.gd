@@ -34,8 +34,8 @@ func player_movement(delta):
 func shoot():
 	var b = Bullet.instantiate()
 	owner.add_child(b)
-	b.transform = $Muzzle.global_transform
-
+	b.transform = $Muzzle.global_transform 
+	
 
 
 func _physics_process(delta):
