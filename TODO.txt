@@ -1,0 +1,8 @@
+Add enemy Spawn path
+Add enemy follow logic
+Add player hit/ enemy hit logic
+add game over
+
+
+Add second shoot muzzle and move points
+maybe alternate sides
