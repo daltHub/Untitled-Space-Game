@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://lctayfbjgnmn"]
+[gd_scene load_steps=9 format=3 uid="uid://lctayfbjgnmn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_81413"]
 [ext_resource type="PackedScene" uid="uid://cxgxv2og8ceyj" path="res://player.tscn" id="2_n7a40"]
 [ext_resource type="PackedScene" uid="uid://cbpa7w5on7xy1" path="res://test_object.tscn" id="3_yr2b4"]
 [ext_resource type="Texture2D" uid="uid://tsqhkt6fnxl" path="res://art/player/tilemap.png" id="4_4y0if"]
 [ext_resource type="PackedScene" uid="uid://cwrot8t3ksxgw" path="res://enemy.tscn" id="5_b2vs8"]
+[ext_resource type="AudioStream" uid="uid://3ga4qe37rys3" path="res://sound/music/Space Fighter Loop.mp3" id="6_3qtj1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sbhcw"]
 texture = ExtResource("4_4y0if")
@@ -151,3 +152,8 @@ scale = Vector2(0.680655, 18.3896)
 collision_mask = 3
 
 [node name="Enemy" parent="." instance=ExtResource("5_b2vs8")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3qtj1")
+volume_db = 1.0
+autoplay = true

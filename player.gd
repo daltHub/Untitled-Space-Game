@@ -8,9 +8,12 @@ var screen_size # Size of the game window.
 var input = Vector2.ZERO
 var bullet_speed = 2000
 var Bullet = preload("res://bullet.tscn")
+@export var shootCooldown: float = 0.3
+@onready var shootCooldownTimer = $ShootCooldownTimer
+@onready var shootSound = $ShootEffectPlayer
+
 func _ready():
 	screen_size = get_viewport_rect().size
-
 
 func get_movement_input():
 	input.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
@@ -34,7 +37,9 @@ func player_movement(delta):
 func shoot():
 	var b = Bullet.instantiate()
 	owner.add_child(b)
-	b.transform = $Muzzle.global_transform 
+	b.transform = $Muzzle.global_transform
+	shootSound.play()
+	
 	
 
 
@@ -42,7 +47,8 @@ func _physics_process(delta):
 	var mouse_pos = get_global_mouse_position()
 	look_at(mouse_pos)
 	player_movement(delta)
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and shootCooldownTimer.is_stopped() :
+		shootCooldownTimer.start(shootCooldown)
 		shoot()
 
 
