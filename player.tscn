@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cu6g5k6ygs8kd" path="res://art/player/player.png" id="1_fvd2a"]
 [ext_resource type="Script" path="res://player.gd" id="1_shv4u"]
-[ext_resource type="AudioStream" uid="uid://dq0ao5v5w7cyn" path="res://sound/effects/Laser_Shoot2.wav" id="3_sglb4"]
+[ext_resource type="AudioStream" uid="uid://ck014spf75rih" path="res://sound/effects/Laser_Shoot2.wav" id="3_sglb4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrsko"]
 animations = [{

@@ -1,7 +1,6 @@
 extends CharacterBody2D
 @export var enemySpeed = 400
-#@onready var player = null
-#@onready var player = get_node_or_null(get_parent().get_node("Player"))
+@export var enemyHealth = 100
 @onready var player = get_parent().get_node("Player")
 var motion = Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
@@ -19,3 +18,13 @@ func _physics_process(delta):
 	move_and_slide()
 	#motion += position.direction_to(player.position)
 	#pass
+	
+func take_damage(damage):
+	print("damage occured: " + str(damage))
+	enemyHealth -= damage
+	if enemyHealth <= 0 :
+		die()
+	
+
+func die():
+	queue_free()

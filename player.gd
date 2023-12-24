@@ -1,14 +1,18 @@
 extends CharacterBody2D
 
 
-var max_speed = 800
-var acceleration = 1800
-var friction = 600
+@export var max_speed = 800
+@export var acceleration = 1800
+@export var friction = 600
+@export var bullet_speed = 500 # unused var for bullet speed 
+@export var shootCooldown: float = 0.3 
+@export var bulletDamage = 50
+
 var screen_size # Size of the game window.
 var input = Vector2.ZERO
-var bullet_speed = 2000 # unused var for bullet speed 
+
 var Bullet = preload("res://bullet.tscn")
-@export var shootCooldown: float = 0.3 
+
 @onready var shootCooldownTimer = $ShootCooldownTimer # timer to determine shoot cooldown (s)
 @onready var shootSound = $ShootEffectPlayer # Sound effect for shooting
 
@@ -37,6 +41,8 @@ func player_movement(delta):
 func shoot():
 	var b = Bullet.instantiate()
 	owner.add_child(b)
+	b.speed = bullet_speed
+	b.damage = bulletDamage
 	b.transform = $Muzzle.global_transform
 	shootSound.play()
 	
