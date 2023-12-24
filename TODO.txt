@@ -1,6 +1,7 @@
 Add player damage logic
 Add enemy Spawn path
-Add enemy follow logic 
+Add enemy follow logic
+add impulsive enemy movement
 
 add game over/new game
 

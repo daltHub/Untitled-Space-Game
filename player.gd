@@ -3,14 +3,12 @@ extends CharacterBody2D
 
 @export var max_speed = 800
 @export var acceleration = 1800
-@export var friction = 600
-@export var bullet_speed = 500 # unused var for bullet speed 
-@export var shootCooldown: float = 0.3 
-@export var bulletDamage = 50
-
+@export var friction = 600 # slows down when ther is no movement input
+@export var bullet_speed = 500 # 
+@export var shoot_cooldown: float = 0.3 # time between bullet shots
+@export var bullet_damage = 50 # damage done to enemy when bullet hits
 var screen_size # Size of the game window.
 var input = Vector2.ZERO
-
 var Bullet = preload("res://bullet.tscn")
 
 @onready var shootCooldownTimer = $ShootCooldownTimer # timer to determine shoot cooldown (s)
@@ -23,8 +21,8 @@ func get_movement_input():
 	input.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 	input.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
 	return input.normalized()
-	
-	
+
+
 func player_movement(delta):
 	input = get_movement_input()
 	if input == Vector2.ZERO:
@@ -38,15 +36,14 @@ func player_movement(delta):
 	move_and_slide()
 	return
 
+
 func shoot():
 	var b = Bullet.instantiate()
 	owner.add_child(b)
 	b.speed = bullet_speed
-	b.damage = bulletDamage
+	b.damage = bullet_damage
 	b.transform = $Muzzle.global_transform
 	shootSound.play()
-	
-	
 
 
 func _physics_process(delta):
@@ -55,7 +52,7 @@ func _physics_process(delta):
 	player_movement(delta)
 	# Shoot if not on cooldown
 	if Input.is_action_pressed("shoot") and shootCooldownTimer.is_stopped() :
-		shootCooldownTimer.start(shootCooldown)
+		shootCooldownTimer.start(shoot_cooldown)
 		shoot()
 
 
