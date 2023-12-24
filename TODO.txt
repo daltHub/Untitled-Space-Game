@@ -1,6 +1,7 @@
-Add enemy Spawn path
-Add enemy follow logic
 Add player hit/ enemy hit logic
+Add enemy Spawn path
+Add enemy follow logic 
+
 add game over
 
 
