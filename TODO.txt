@@ -5,6 +5,5 @@ add impulsive enemy movement
 
 add game over/new game
 
-
 Add second shoot muzzle and move points
 maybe alternate sides

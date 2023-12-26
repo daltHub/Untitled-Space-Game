@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-@export var max_speed = 800
-@export var acceleration = 1800
+@export var max_speed = 400
+@export var acceleration = 1000
 @export var friction = 600 # slows down when ther is no movement input
 @export var bullet_speed = 500 # 
 @export var shoot_cooldown: float = 0.3 # time between bullet shots
@@ -15,6 +15,7 @@ var Bullet = preload("res://bullet.tscn")
 @onready var shootSound = $ShootEffectPlayer # Sound effect for shooting
 
 func _ready():
+	add_to_group("player")
 	screen_size = get_viewport_rect().size
 
 func get_movement_input():
@@ -32,9 +33,12 @@ func player_movement(delta):
 			velocity = Vector2.ZERO
 	else:
 		velocity += (input * acceleration * delta)
+		#velocity += (input * acceleration)
 		velocity = velocity.limit_length(max_speed)
-	move_and_slide()
-	return
+	#move_and_slide()
+	var collision_data = move_and_collide(velocity*delta)
+	return collision_data
+
 
 
 func shoot():
@@ -42,7 +46,7 @@ func shoot():
 	owner.add_child(b)
 	b.speed = bullet_speed
 	b.damage = bullet_damage
-	b.transform = $Muzzle.global_transform
+	b.transform = $Muzzle.global_transform # 
 	shootSound.play()
 
 
@@ -54,6 +58,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot") and shootCooldownTimer.is_stopped() :
 		shootCooldownTimer.start(shoot_cooldown)
 		shoot()
+		
 
 
 
