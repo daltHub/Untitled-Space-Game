@@ -7,16 +7,34 @@ extends CharacterBody2D
 @export var bullet_speed = 500 # 
 @export var shoot_cooldown: float = 0.3 # time between bullet shots
 @export var bullet_damage = 50 # damage done to enemy when bullet hits
+@export var player_health = 100
+@export var damage_cooldown = 1
 var screen_size # Size of the game window.
 var input = Vector2.ZERO
 var Bullet = preload("res://bullet.tscn")
+var sprite : AnimatedSprite2D
 
 @onready var shootCooldownTimer = $ShootCooldownTimer # timer to determine shoot cooldown (s)
 @onready var shootSound = $ShootEffectPlayer # Sound effect for shooting
-
+@onready var damageCooldownTimer = $DamageCooldownTimer
 func _ready():
 	add_to_group("player")
+	sprite = $AnimatedSprite2D
 	screen_size = get_viewport_rect().size
+
+func _physics_process(delta):
+	var mouse_pos = get_global_mouse_position()
+	look_at(mouse_pos)
+	var coll = player_movement(delta)
+	if coll:
+		if coll.get_collider().is_in_group("mobs"):
+			take_damage(coll.get_collider().contact_damage)
+			#print("Player Hit " + str(coll.get_collider().contact_damage))
+	# Shoot if not on cooldown
+	if Input.is_action_pressed("shoot") and shootCooldownTimer.is_stopped() :
+		shootCooldownTimer.start(shoot_cooldown)
+		shoot()
+
 
 func get_movement_input():
 	input.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
@@ -40,25 +58,21 @@ func player_movement(delta):
 	return collision_data
 
 
-
 func shoot():
 	var b = Bullet.instantiate()
-	owner.add_child(b)
+	owner.add_child(b) # add bullet as child of main to stop rotation with player after instance
 	b.speed = bullet_speed
 	b.damage = bullet_damage
-	b.transform = $Muzzle.global_transform # 
+	b.transform = $Muzzle.global_transform # transform bullet to muzzle
 	shootSound.play()
 
 
-func _physics_process(delta):
-	var mouse_pos = get_global_mouse_position()
-	look_at(mouse_pos)
-	player_movement(delta)
-	# Shoot if not on cooldown
-	if Input.is_action_pressed("shoot") and shootCooldownTimer.is_stopped() :
-		shootCooldownTimer.start(shoot_cooldown)
-		shoot()
-		
+func take_damage(damage):
+	if damageCooldownTimer.is_stopped():
+		damageCooldownTimer.start(damage_cooldown)
+		player_health -= damage
+		if player_health <= 0:
+			owner.game_over()
+			get_tree().quit()
 
-
-
+		print("player damage taken" + str(damage))

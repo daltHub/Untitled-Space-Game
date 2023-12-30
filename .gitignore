@@ -2,3 +2,4 @@
 .godot/
 *.aseprite
 *.import
+*.tmp

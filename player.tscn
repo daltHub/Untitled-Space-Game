@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxgxv2og8ceyj"]
+[gd_scene load_steps=6 format=3 uid="uid://cxgxv2og8ceyj"]
 
 [ext_resource type="Texture2D" uid="uid://cu6g5k6ygs8kd" path="res://art/player/player.png" id="1_fvd2a"]
 [ext_resource type="Script" path="res://player.gd" id="1_shv4u"]
@@ -15,25 +15,57 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_hov4o"]
+max_value = 3.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 1, Vector2(1, 0.989011), -5.86813, 0.0, 1, 0]
+point_count = 2
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 128
 script = ExtResource("1_shv4u")
+bullet_damage = 10
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_jrsko")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(1, 0)
-scale = Vector2(1.13043, 0.345745)
-polygon = PackedVector2Array(9.6875, -5, 7.1875, -10, 1.5625, -10, -1.5625, -21, -1.875, -24, 2.1875, -24, 3.125, -26, 3.125, -28, 2.5, -30, -1.875, -30, -5.3125, -47, -6.5625, -45, -7.5, -13, -10.3125, -16, -11.5625, -14, -11.5625, -6, -10.9375, -4, -10.3125, -4, -10.3125, 4, -10.9375, 4, -11.5625, 6, -11.5625, 14, -10.9375, 16, -7.8125, 14, -6.875, 12, -6.875, 34, -6.5625, 45, -5.9375, 47, -5.3125, 47, -4.0625, 42, -2.1875, 30, 2.5, 30, 3.125, 28, 3.125, 26, 2.5, 24, -1.875, 24, -1.5625, 21, -1.5625, 16, 1.5625, 10, 7.1875, 10, 10, 5)
-
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(37, 0)
+position = Vector2(16, 0)
 
 [node name="ShootCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="ShootEffectPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_sglb4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(16, -2, 16, 2, 15, 2, 15, 3, 9, 3, 9, 4, 4, 4, 1, 6, 1, 7, 5, 7, 5, 12, -2, 12, -2, 13, -5, 16, -7, 16, -9, 14, -9, 9, -8, 9, -8, 6, -15, 6, -15, 5, -16, 5, -16, 2, -15, 2, -15, 1, -13, 1, -13, -1, -15, -1, -15, -2, -16, -2, -16, -5, -15, -5, -15, -6, -8, -6, -8, -9, -9, -9, -9, -14, -7, -16, -5, -16, -2, -13, -2, -12, 5, -12, 5, -7, 1, -7, 1, -6, 9, -3)
+
+[node name="EngineSmokeEmitterLeft" type="CPUParticles2D" parent="."]
+position = Vector2(-16, -3)
+lifetime = 0.2
+randomness = 1.0
+direction = Vector2(-1, 0)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+scale_amount_curve = SubResource("Curve_hov4o")
+color = Color(0.580392, 0.533333, 0.533333, 1)
+
+[node name="EngineSmokeEmitterRight" type="CPUParticles2D" parent="."]
+position = Vector2(-16, 3)
+lifetime = 0.2
+randomness = 1.0
+direction = Vector2(-1, 0)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+scale_amount_curve = SubResource("Curve_hov4o")
+color = Color(0.580392, 0.533333, 0.533333, 1)
+
+[node name="DamageCooldownTimer" type="Timer" parent="."]
+one_shot = true

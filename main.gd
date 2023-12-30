@@ -6,10 +6,13 @@ func _ready():
 	new_game()
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func new_game():
+	pass
+
+func game_over():
+	print("Game Over CAlled")
 	pass
