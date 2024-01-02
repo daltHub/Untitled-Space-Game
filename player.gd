@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var shoot_cooldown: float = 0.3 # time between bullet shots
 @export var bullet_damage = 50 # damage done to enemy when bullet hits
 @export var player_health = 100
-@export var damage_cooldown = 1
+@export var damage_cooldown = 1 # time in s of invulnerability
 var screen_size # Size of the game window.
 var input = Vector2.ZERO
 var Bullet = preload("res://bullet.tscn")
