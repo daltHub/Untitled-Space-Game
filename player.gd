@@ -72,6 +72,6 @@ func take_damage(damage):
 		player_health -= damage
 		if player_health <= 0:
 			owner.game_over()
-			get_tree().quit()
+
 
 		print("player damage taken" + str(damage))
