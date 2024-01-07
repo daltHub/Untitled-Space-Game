@@ -1,7 +1,7 @@
 extends Area2D
 
-var speed = 1750
-var damage = 50
+@export var speed = 1750
+@export var damage = 50
 
 func _ready():
 	#self.speed = speed
@@ -14,6 +14,5 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	if body.is_in_group("mobs"):
 		body.take_damage(damage)
-		
-		#body.queue_free()
+
 	queue_free()

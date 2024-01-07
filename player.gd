@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @export var max_speed = 400
-@export var acceleration = 1000
+@export var acceleration = 50
 @export var friction = 600 # slows down when ther is no movement input
 @export var bullet_speed = 500 # 
 @export var shoot_cooldown: float = 0.3 # time between bullet shots
@@ -25,11 +25,10 @@ func _ready():
 func _physics_process(delta):
 	var mouse_pos = get_global_mouse_position()
 	look_at(mouse_pos)
-	var coll = player_movement(delta)
+	var coll = player_movement(delta) # movement function returns collision info
 	if coll:
 		if coll.get_collider().is_in_group("mobs"):
-			take_damage(coll.get_collider().contact_damage)
-			#print("Player Hit " + str(coll.get_collider().contact_damage))
+			take_damage(coll.get_collider().contact_damage) # take damage equal to mobs damage stat
 	# Shoot if not on cooldown
 	if Input.is_action_pressed("shoot") and shootCooldownTimer.is_stopped() :
 		shootCooldownTimer.start(shoot_cooldown)
@@ -50,7 +49,7 @@ func player_movement(delta):
 		else:
 			velocity = Vector2.ZERO
 	else:
-		velocity += (input * acceleration * delta)
+		velocity += (input * acceleration)
 		#velocity += (input * acceleration)
 		velocity = velocity.limit_length(max_speed)
 	#move_and_slide()

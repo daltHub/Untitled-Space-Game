@@ -1,8 +1,6 @@
-Add player damage logic
 Add enemy Spawn path
-add impulsive enemy movement
+add impulsive enemy movements
 
 add game over/new game
-
-Add second shoot muzzle and move points
-maybe alternate sides
+add player health bar
+update bullet
