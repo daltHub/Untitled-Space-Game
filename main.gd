@@ -1,5 +1,6 @@
 extends Node
-
+@onready var health_bar = $HUD/HealthBar
+@onready var player = $Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -7,6 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var player_health = player.player_health
+	health_bar.set_value_no_signal(player_health)
 	pass
 
 func new_game():
