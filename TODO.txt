@@ -1,6 +1,6 @@
-Add enemy Spawn path
-add impulsive enemy movements
+Add game over/new game screens
+add smaller enemies
 
-add game over/new game
-add player health bar
-update bullet
+add multiple enemies
+update bg art
+update player art

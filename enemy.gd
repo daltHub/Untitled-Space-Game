@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@export var enemy_speed = 400
+@export var enemy_speed = 200
 @export var enemy_health = 100
 @export var contact_damage = 20
 @export var hitEffectTime = 0.1
