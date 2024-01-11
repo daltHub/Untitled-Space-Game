@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Untitled Space Game"
-run/main_scene="res://main.tscn"
+run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
@@ -24,6 +24,10 @@ window/size/mode=2
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://art/player/target.png"
 mouse_cursor/custom_image_hotspot=Vector2(12, 12)
+
+[gui]
+
+theme/main_scene="res://main_menu.tscn"
 
 [input]
 
