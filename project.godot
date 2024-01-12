@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 [display]
 
 window/size/viewport_width=480
-window/size/viewport_height=260
-window/size/mode=2
+window/size/viewport_height=270
+window/size/mode=3
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://art/player/target.png"
 mouse_cursor/custom_image_hotspot=Vector2(12, 12)

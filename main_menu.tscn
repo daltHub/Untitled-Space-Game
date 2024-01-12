@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7ih75x6262xs"]
+[gd_scene load_steps=7 format=3 uid="uid://c7ih75x6262xs"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_ska4t"]
+[ext_resource type="Theme" uid="uid://bdrkh2jg3evvd" path="res://art/menu_theme.tres" id="2_wuorx"]
+[ext_resource type="Texture2D" uid="uid://bcbrt8hono37r" path="res://art/UI/menu/start_button.png" id="3_hn80j"]
+[ext_resource type="Texture2D" uid="uid://badhhgkclvny1" path="res://art/UI/menu/options_button.png" id="5_ody8g"]
+[ext_resource type="Texture2D" uid="uid://dp8y7ltvk5kes" path="res://art/UI/menu/github_button.png" id="6_8i6dl"]
+[ext_resource type="Texture2D" uid="uid://bqe6vxooarnga" path="res://art/UI/menu/quit_button.png" id="6_tklfa"]
 
-[node name="Control" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,32 +19,44 @@ size_flags_vertical = 0
 script = ExtResource("1_ska4t")
 metadata/_edit_group_ = true
 
-[node name="Container" type="VBoxContainer" parent="."]
+[node name="MenuContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -137.0
+offset_right = 177.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="StartButton" type="TextureButton" parent="MenuContainer"]
+layout_mode = 2
+theme = ExtResource("2_wuorx")
+texture_normal = ExtResource("3_hn80j")
+
+[node name="OptionsButton" type="TextureButton" parent="MenuContainer"]
+layout_mode = 2
+theme = ExtResource("2_wuorx")
+texture_normal = ExtResource("5_ody8g")
+
+[node name="QuitButton" type="TextureButton" parent="MenuContainer"]
+layout_mode = 2
+theme = ExtResource("2_wuorx")
+texture_normal = ExtResource("6_tklfa")
+
+[node name="GithubButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -50.5
-offset_right = 48.0
-offset_bottom = 50.5
-grow_horizontal = 2
+offset_left = 401.0
+offset_top = 59.0
+offset_right = 465.0
+offset_bottom = 123.0
 grow_vertical = 2
+texture_normal = ExtResource("6_8i6dl")
 
-[node name="StartButton" type="Button" parent="Container"]
-layout_mode = 2
-text = "Start Game"
-
-[node name="OptionsButton" type="Button" parent="Container"]
-layout_mode = 2
-text = "Options"
-
-[node name="QuitButton" type="Button" parent="Container"]
-layout_mode = 2
-text = "Quit"
-
-[connection signal="pressed" from="Container/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Container/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="Container/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuContainer/QuitButton" to="." method="_on_quit_button_pressed"]
