@@ -1,6 +1,7 @@
 Add game over/new game screens
-add smaller enemies
+add smaller enemies - use roaches 
 
 add multiple enemies
 update bg art
 update player art
+add menu background image
