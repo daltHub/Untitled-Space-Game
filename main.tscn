@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_81413"]
 [ext_resource type="PackedScene" uid="uid://cxgxv2og8ceyj" path="res://player.tscn" id="2_n7a40"]
-[ext_resource type="Texture2D" uid="uid://tsqhkt6fnxl" path="res://art/player/tilemap.png" id="4_4y0if"]
-[ext_resource type="AudioStream" uid="uid://3ga4qe37rys3" path="res://sound/music/Space Fighter Loop.mp3" id="6_3qtj1"]
+[ext_resource type="Texture2D" uid="uid://ct5iwpcisluff" path="res://art/player/tilemap.png" id="4_4y0if"]
+[ext_resource type="AudioStream" uid="uid://b5msqwr1rxuc0" path="res://sound/music/Space Fighter Loop.mp3" id="6_3qtj1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8tgqi"]
 texture = ExtResource("4_4y0if")
@@ -203,4 +203,9 @@ position = Vector2(-50, -50)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
