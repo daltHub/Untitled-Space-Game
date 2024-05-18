@@ -195,6 +195,10 @@ offset_bottom = 27.0
 grow_horizontal = 2
 show_percentage = false
 
+[node name="LevelTimerLabel" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="EnemySpawnPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_wrynr")
 
@@ -203,9 +207,4 @@ position = Vector2(-50, -50)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 
-[node name="LevelTimer" type="Timer" parent="."]
-wait_time = 60.0
-one_shot = true
-
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
-[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
