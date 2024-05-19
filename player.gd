@@ -18,6 +18,7 @@ var sprite : AnimatedSprite2D
 @onready var shootCooldownTimer = $ShootCooldownTimer # timer to determine shoot cooldown (s)
 @onready var shootSound = $ShootEffectPlayer # Sound effect for shooting
 @onready var damageCooldownTimer = $DamageCooldownTimer
+
 func _ready():
 	add_to_group("player")
 	sprite = $AnimatedSprite2D
@@ -34,6 +35,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot") and shootCooldownTimer.is_stopped() :
 		shootCooldownTimer.start(shoot_cooldown)
 		shoot()
+	if Input.is_action_pressed("pause"):
+		_on_pause_button_pressed()
+	
 
 
 func get_movement_input():
@@ -57,6 +61,14 @@ func player_movement(delta):
 	var collision_data = move_and_collide(velocity*delta)
 	return collision_data
 
+func _on_pause_button_pressed():
+	if get_tree().paused == true:
+		get_tree().paused = false
+	else:
+		get_tree().paused = true
+
+	
+	show()
 
 func shoot():
 	var b = Bullet.instantiate()
