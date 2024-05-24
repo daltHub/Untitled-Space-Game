@@ -26,7 +26,7 @@ func _process(delta):
 
 
 func new_game():
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 	pass
 
 func game_over():
